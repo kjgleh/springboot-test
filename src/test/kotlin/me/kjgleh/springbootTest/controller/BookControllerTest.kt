@@ -1,6 +1,7 @@
 package me.kjgleh.springbootTest.controller
 
 import me.kjgleh.springbootTest.domain.Book
+import me.kjgleh.springbootTest.domain.Publisher
 import me.kjgleh.springbootTest.service.BookService
 import org.hamcrest.Matchers.hasSize
 import org.junit.jupiter.api.Test
@@ -30,7 +31,10 @@ internal class BookControllerTest {
         val book = Book(
                 id = Random().nextLong(),
                 title = UUID.randomUUID().toString(),
-                publishedAt = LocalDateTime.now()
+                publisher = Publisher(
+                    id = Random().nextInt(),
+                    name = UUID.randomUUID().toString()
+                )
         )
 
         given(bookService.getBook(book.id)).willReturn(Optional.of(book))
@@ -62,7 +66,10 @@ internal class BookControllerTest {
         val bookList = (1..20).map {
             Book(
                     title = UUID.randomUUID().toString(),
-                    publishedAt = LocalDateTime.now()
+                    publisher = Publisher(
+                        id = Random().nextInt(),
+                        name = UUID.randomUUID().toString()
+                    )
             )
         }
         given(bookService.getBookList()).willReturn(bookList)

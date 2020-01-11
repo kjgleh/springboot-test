@@ -13,6 +13,11 @@ data class Book(
     var id: Long = 0L,
 
     var title: String,
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "publisher_id")
+    var publisher: Publisher
+) {
     @CreatedDate
-    var publishedAt: LocalDateTime
-)
+    lateinit var createdAt: LocalDateTime
+}

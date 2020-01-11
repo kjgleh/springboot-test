@@ -1,6 +1,7 @@
 package me.kjgleh.springbootTest.repository
 
 import me.kjgleh.springbootTest.domain.Book
+import me.kjgleh.springbootTest.domain.Publisher
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -23,7 +24,10 @@ class BookRepositoryTest {
         // Arrange
         val book = Book(
                 title = UUID.randomUUID().toString(),
-                publishedAt = LocalDateTime.now()
+                publisher = Publisher(
+                    id = Random().nextInt(),
+                    name = UUID.randomUUID().toString()
+                )
         )
 
         val sut = bookRepository
@@ -43,7 +47,10 @@ class BookRepositoryTest {
         val bookList = (1..4).map {
             Book(
                     title = UUID.randomUUID().toString(),
-                    publishedAt = LocalDateTime.now()
+                    publisher = Publisher(
+                        id = Random().nextInt(),
+                        name = UUID.randomUUID().toString()
+                    )
             )
         }
         val sut = bookRepository
@@ -63,7 +70,10 @@ class BookRepositoryTest {
         // Arrange
         val book = Book(
                 title = UUID.randomUUID().toString(),
-                publishedAt = LocalDateTime.now()
+                publisher = Publisher(
+                    id = Random().nextInt(),
+                    name = UUID.randomUUID().toString()
+                )
         )
 
         val sut = bookRepository
